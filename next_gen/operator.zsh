@@ -28,6 +28,9 @@ function crc_setup {
     ${CRC_BIN} setup
 }
 
+alias m='make manifests && make generate && make'
+alias mt='make test GINKGO_ARGS="--output-interceptor-mode=none"'
+
 function crc_ssh {
     ssh -i ~/.crc/machines/crc/id_ecdsa -o StrictHostKeyChecking=no core@$(shell crc ip)
 }
