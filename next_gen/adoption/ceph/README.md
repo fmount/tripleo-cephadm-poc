@@ -95,3 +95,15 @@ cephstorage-1.ctlplane
 ```
 ansible -i <inventory> -m ping all
 ```
+
+## Interact with Ceph
+
+- Build a ceph client:
+
+```
+ceph_dir="/etc/ceph"
+ceph_dir="/home/tripleo-admin/ceph_client"
+alias ceph="sudo podman run --rm --net=host --ipc=host --volume $ceph_dir:/etc/ceph:z --entrypoint ceph undercloud-0.ctlplane.example.local:8787/ceph/ceph:6 --fsid <FSID> -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring "
+
+watch ${BASH_ALIASES[ceph]} -s
+```
